@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Checker - Free & Pro</title>
+    <meta name="description" content="Free plagiarism checker with pro version. Check unlimited text, get source links, PDF reports and full source code access.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span>🔍 Plagiarism<span class="pro-text">Checker</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Check Plagiarism <span class="gradient-text">Instantly</span></h1>
+        <p class="subtitle">Free basic checks · Pro version with full source code access</p>
+        <div class="hero-buttons">
+            <a href="#checker" class="btn-primary">Try Free Now</a>
+            <a href="pricing.html" class="btn-secondary">View Pro →</a>
+        </div>
+    </header>
+
+    <!-- Main Checker Section -->
+    <section id="checker" class="checker-section">
+        <div class="container">
+            <h2>Try It Now</h2>
+            
+            <!-- Free/Pro Toggle -->
+            <div class="version-toggle">
+                <button class="version-btn active" onclick="setVersion('free')" id="freeVersionBtn">
+                    <span class="btn-title">Free Version</span>
+                    <span class="btn-subtitle">Basic checks</span>
+                </button>
+                <button class="version-btn" onclick="setVersion('pro')" id="proVersionBtn">
+                    <span class="btn-title">Pro Version</span>
+                    <span class="btn-subtitle">Unlimited features</span>
+                </button>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <textarea 
+                    id="textInput" 
+                    placeholder="Paste your text here (minimum 20 words)..."
+                    rows="6"
+                ></textarea>
+                <div class="word-count">
+                    <span id="wordCount">0</span>/<span id="wordLimit">1000</span> words
+                </div>
+                <button id="checkBtn" class="btn-check" onclick="checkPlagiarism()">
+                    Check Plagiarism
+                </button>
+            </div>
+
+            <!-- Results Area -->
+            <div id="results" class="results-area hidden">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="features-grid">
+                <!-- Free Features -->
+                <div class="feature-card free">
+                    <h3>Free Version</h3>
+                    <ul>
+                        <li>✓ 1,000 words per check</li>
+                        <li>✓ 5 checks per day</li>
+                        <li>✓ Basic similarity score</li>
+                        <li class="disabled">✗ Source links</li>
+                        <li class="disabled">✗ PDF reports</li>
+                    </ul>
+                </div>
+                
+                <!-- Pro Features -->
+                <div class="feature-card pro">
+                    <h3>Pro Version</h3>
+                    <ul>
+                        <li>✓ Unlimited words</li>
+                        <li>✓ Unlimited checks</li>
+                        <li>✓ Source links with % match</li>
+                        <li>✓ PDF reports</li>
+                        <li>✓ Full source code access</li>
+                    </ul>
+                    <div class="price">$29 one-time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 PlagiarismChecker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
