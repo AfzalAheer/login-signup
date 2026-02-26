@@ -1,1 +1,109 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Plagiarism Checker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span>🔍 Plagiarism<span class="pro-text">Checker</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+                <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Welcome Back! 👋</h2>
+                <p>Login to access your account</p>
+            </div>
+
+            <!-- Tabs: Login/Signup -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="window.location.href='login.html'">Login</button>
+                <button class="tab-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox" id="remember"> Remember me
+                    </label>
+                    <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-auth" id="loginBtn">
+                    <span class="btn-text">Login</span>
+                    <span class="btn-loader hidden">⏳ Logging in...</span>
+                </button>
+
+                <!-- Demo Login (for testing) -->
+                <div class="demo-login">
+                    <p>Demo Accounts:</p>
+                    <button type="button" onclick="demoLogin('free')" class="demo-btn">Free User</button>
+                    <button type="button" onclick="demoLogin('pro')" class="demo-btn pro">Pro User</button>
+                </div>
+            </form>
+
+            <!-- Social Login -->
+            <div class="social-login">
+                <p class="or-text">Or continue with</p>
+                <div class="social-buttons">
+                    <button onclick="socialLogin('google')" class="social-btn google">
+                        <img src="assets/icons/google.svg" alt="Google"> Google
+                    </button>
+                    <button onclick="socialLogin('github')" class="social-btn github">
+                        <img src="assets/icons/github.svg" alt="GitHub"> GitHub
+                    </button>
+                </div>
+            </div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
