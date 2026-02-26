@@ -1,2 +1,2 @@
 # login-signup
-seo optimized logi and sign up
+seo optimized login and sign up page
