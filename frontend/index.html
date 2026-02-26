@@ -1,1 +1,330 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Checker - Free & Pro</title>
+    
+    <!-- Simple CSS - Direct inline for testing -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: #4f46e5;
+            padding: 1rem;
+            color: white;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-signup {
+            background: white;
+            color: #4f46e5 !important;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .version-toggle {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .version-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .version-btn.active {
+            background: #4f46e5;
+            color: white;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-check {
+            width: 100%;
+            padding: 1rem;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn-check:hover {
+            background: #4338ca;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-radius: 0.5rem;
+            background: #f9fafb;
+        }
+        
+        .feature-card.pro {
+            background: #fef3c7;
+        }
+        
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .results-area {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: #f9fafb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🔍 PlagiarismChecker</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Check Plagiarism Instantly</h1>
+        <p>Free basic checks · Pro version with full source code</p>
+        <div style="margin-top: 2rem;">
+            <a href="#checker" style="background: white; color: #4f46e5; padding: 0.8rem 2rem; border-radius: 0.5rem; text-decoration: none; margin-right: 1rem;">Try Free</a>
+            <a href="pricing.html" style="background: transparent; color: white; padding: 0.8rem 2rem; border-radius: 0.5rem; text-decoration: none; border: 2px solid white;">View Pro</a>
+        </div>
+    </section>
+
+    <!-- Main Checker -->
+    <section id="checker" class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Try It Now</h2>
+        
+        <!-- Version Toggle -->
+        <div class="version-toggle">
+            <button class="version-btn active" onclick="setVersion('free')" id="freeBtn">Free Version</button>
+            <button class="version-btn" onclick="setVersion('pro')" id="proBtn">Pro Version</button>
+        </div>
+
+        <!-- Input Area -->
+        <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <textarea 
+                id="textInput" 
+                placeholder="Paste your text here (minimum 20 words)..."
+                rows="6"
+            ></textarea>
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <span id="wordCount">0</span>/<span id="wordLimit">1000</span> words
+            </div>
+            <button id="checkBtn" class="btn-check" onclick="checkPlagiarism()">
+                Check Plagiarism
+            </button>
+        </div>
+
+        <!-- Results Area -->
+        <div id="results" class="results-area hidden">
+            <!-- Results will appear here -->
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="container">
+        <h2 style="text-align: center; margin: 3rem 0;">Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Free Version</h3>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li>✓ 1,000 words per check</li>
+                    <li>✓ 5 checks per day</li>
+                    <li>✓ Basic similarity score</li>
+                    <li style="opacity: 0.5;">✗ Source links</li>
+                    <li style="opacity: 0.5;">✗ PDF reports</li>
+                </ul>
+            </div>
+            <div class="feature-card pro">
+                <h3>Pro Version</h3>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li>✓ Unlimited words</li>
+                    <li>✓ Unlimited checks</li>
+                    <li>✓ Source links with % match</li>
+                    <li>✓ PDF reports</li>
+                    <li>✓ Full source code</li>
+                </ul>
+                <div style="margin-top: 1rem; font-size: 1.5rem; font-weight: bold; color: #4f46e5;">$29</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 PlagiarismChecker. All rights reserved.</p>
+    </footer>
+
+    <!-- Simple JavaScript -->
+    <script>
+        // User session
+        let userSession = {
+            isPro: false,
+            checksToday: 0
+        };
+
+        // Word count
+        document.getElementById('textInput').addEventListener('input', function() {
+            const words = this.value.trim() ? this.value.trim().split(/\s+/).length : 0;
+            document.getElementById('wordCount').textContent = words;
+        });
+
+        // Set version
+        function setVersion(version) {
+            const freeBtn = document.getElementById('freeBtn');
+            const proBtn = document.getElementById('proBtn');
+            
+            if (version === 'free') {
+                freeBtn.classList.add('active');
+                proBtn.classList.remove('active');
+                document.getElementById('wordLimit').textContent = '1000';
+            } else {
+                proBtn.classList.add('active');
+                freeBtn.classList.remove('active');
+                document.getElementById('wordLimit').textContent = 'Unlimited';
+                
+                // Check if pro user
+                if (!userSession.isPro) {
+                    alert('Pro version requires upgrade!');
+                }
+            }
+        }
+
+        // Check plagiarism
+        function checkPlagiarism() {
+            const text = document.getElementById('textInput').value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            
+            if (words < 10) {
+                alert('Please enter at least 10 words');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+            
+            // Simulate checking
+            resultsDiv.innerHTML = '<div style="text-align: center;">🔍 Checking... Please wait</div>';
+            
+            setTimeout(() => {
+                const similarity = Math.floor(Math.random() * 30) + 5;
+                
+                if (document.getElementById('proBtn').classList.contains('active') && userSession.isPro) {
+                    resultsDiv.innerHTML = `
+                        <h3>📊 Detailed Results</h3>
+                        <p>Similarity: ${similarity}%</p>
+                        <p>Sources found: 3</p>
+                        <ul>
+                            <li>example.com/article-1 - 12% match</li>
+                            <li>wikipedia.org/page - 8% match</li>
+                            <li>academic.edu/paper - 5% match</li>
+                        </ul>
+                        <button style="padding: 0.5rem 1rem; background: #4f46e5; color: white; border: none; border-radius: 0.3rem; margin-top: 1rem;">📥 Download PDF</button>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <h3>🔍 Basic Result</h3>
+                        <p>${similarity}% similarity detected</p>
+                        <p style="color: #666; font-size: 0.9rem;">🔒 Upgrade to Pro for source links and PDF reports</p>
+                        <a href="pricing.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #4f46e5; color: white; text-decoration: none; border-radius: 0.3rem;">Upgrade to Pro →</a>
+                    `;
+                }
+            }, 2000);
+        }
+
+        // Load demo pro user for testing
+        function setDemoUser(type) {
+            userSession.isPro = (type === 'pro');
+            alert(`Demo ${type} user activated!`);
+        }
+    </script>
+</body>
+</html>
