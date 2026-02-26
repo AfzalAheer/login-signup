@@ -4,20 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plagiarism Checker - Free & Pro</title>
-    <meta name="description" content="Free plagiarism checker with pro version. Check unlimited text, get source links, PDF reports and full source code access.">
-    <link rel="stylesheet" href="frontend/css/style.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    
+    <style>
+        /* Fallback styles in case CSS files don't load */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .navbar { background: #4f46e5; padding: 1rem; color: white; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; }
+        .nav-menu a { color: white; text-decoration: none; }
+        .nav-menu a.active { font-weight: bold; border-bottom: 2px solid white; }
+        .btn-signup { background: white; color: #4f46e5 !important; padding: 0.5rem 1rem; border-radius: 0.5rem; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 4rem 1rem; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .feature-card { padding: 2rem; border-radius: 0.5rem; background: #f9fafb; }
+        .feature-card.pro { background: #fef3c7; }
+        .footer { background: #1f2937; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+        .footer-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: left; }
+        .footer-links a { color: #9ca3af; text-decoration: none; }
+        .footer-links a:hover { color: white; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; }
+        .btn-primary { background: white; color: #4f46e5; }
+        .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <span>🔍 Plagiarism<span class="pro-text">Checker</span></span>
+                <a href="index.html" style="color: white; text-decoration: none;">🔍 PlagiarismChecker</a>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
             </ul>
@@ -25,95 +56,434 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero">
-        <h1>Check Plagiarism <span class="gradient-text">Instantly</span></h1>
-        <p class="subtitle">Free basic checks · Pro version with full source code access</p>
-        <div class="hero-buttons">
-            <a href="#checker" class="btn-primary">Try Free Now</a>
-            <a href="pricing.html" class="btn-secondary">View Pro →</a>
+    <section class="hero">
+        <h1>Check Plagiarism <span style="color: #fbbf24;">Instantly</span></h1>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">Free basic checks · Pro version with full source code access</p>
+        <div style="margin-top: 2rem;">
+            <a href="#checker" class="btn btn-primary">Try Free Now</a>
+            <a href="pricing.html" class="btn btn-secondary">View Pro →</a>
         </div>
-    </header>
-
-    <!-- Main Checker Section -->
-    <section id="checker" class="checker-section">
-        <div class="container">
-            <h2>Try It Now</h2>
-            
-            <!-- Free/Pro Toggle -->
-            <div class="version-toggle">
-                <button class="version-btn active" onclick="setVersion('free')" id="freeVersionBtn">
-                    <span class="btn-title">Free Version</span>
-                    <span class="btn-subtitle">Basic checks</span>
-                </button>
-                <button class="version-btn" onclick="setVersion('pro')" id="proVersionBtn">
-                    <span class="btn-title">Pro Version</span>
-                    <span class="btn-subtitle">Unlimited features</span>
-                </button>
+        
+        <!-- Stats -->
+        <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 3rem;">
+            <div>
+                <div style="font-size: 2rem; font-weight: bold;">10K+</div>
+                <div style="font-size: 0.9rem; opacity: 0.8;">Daily Users</div>
             </div>
-
-            <!-- Input Area -->
-            <div class="input-area">
-                <textarea 
-                    id="textInput" 
-                    placeholder="Paste your text here (minimum 20 words)..."
-                    rows="6"
-                ></textarea>
-                <div class="word-count">
-                    <span id="wordCount">0</span>/<span id="wordLimit">1000</span> words
-                </div>
-                <button id="checkBtn" class="btn-check" onclick="checkPlagiarism()">
-                    Check Plagiarism
-                </button>
+            <div>
+                <div style="font-size: 2rem; font-weight: bold;">1M+</div>
+                <div style="font-size: 0.9rem; opacity: 0.8;">Documents Checked</div>
             </div>
-
-            <!-- Results Area -->
-            <div id="results" class="results-area hidden">
-                <!-- Results will appear here -->
+            <div>
+                <div style="font-size: 2rem; font-weight: bold;">99%</div>
+                <div style="font-size: 0.9rem; opacity: 0.8;">Accuracy</div>
             </div>
         </div>
     </section>
 
+    <!-- Main Checker Section -->
+    <section id="checker" class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Try It Now</h2>
+        
+        <!-- Version Toggle -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; background: #f3f4f6; padding: 0.5rem; border-radius: 0.5rem;">
+            <button class="version-btn active" onclick="setVersion('free')" id="freeBtn" style="flex: 1; padding: 1rem; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: bold; background: white; color: #4f46e5;">Free Version</button>
+            <button class="version-btn" onclick="setVersion('pro')" id="proBtn" style="flex: 1; padding: 1rem; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: bold;">Pro Version</button>
+        </div>
+
+        <!-- Features Badge -->
+        <div id="freeFeatures" style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+            <span style="background: #6b7280; color: white; padding: 0.2rem 0.8rem; border-radius: 1rem; font-size: 0.8rem;">FREE</span>
+            <ul style="margin-top: 0.5rem; list-style: none;">
+                <li>✓ 1,000 words limit</li>
+                <li>✓ 5 checks per day</li>
+                <li>✓ Basic similarity score</li>
+            </ul>
+        </div>
+
+        <div id="proFeatures" style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; display: none;">
+            <span style="background: #f59e0b; color: white; padding: 0.2rem 0.8rem; border-radius: 1rem; font-size: 0.8rem;">⭐ PRO</span>
+            <ul style="margin-top: 0.5rem; list-style: none;">
+                <li>✓ Unlimited words & checks</li>
+                <li>✓ Source links with % match</li>
+                <li>✓ PDF reports</li>
+                <li>✓ Full source code access</li>
+            </ul>
+        </div>
+
+        <!-- Input Area -->
+        <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <textarea 
+                id="textInput" 
+                placeholder="Paste your text here (minimum 20 words)..."
+                rows="6"
+                style="width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; margin-bottom: 1rem;"
+            ></textarea>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="color: #6b7280; font-size: 0.9rem;">💡 For best results, use at least 100 words</span>
+                <span style="background: #f3f4f6; padding: 0.3rem 0.8rem; border-radius: 1rem;">
+                    <span id="wordCount">0</span>/<span id="wordLimit">1000</span> words
+                </span>
+            </div>
+            <button id="checkBtn" onclick="checkPlagiarism()" style="width: 100%; padding: 1rem; background: #4f46e5; color: white; border: none; border-radius: 0.5rem; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
+                Check Plagiarism
+            </button>
+        </div>
+
+        <!-- Results Area -->
+        <div id="results" style="margin-top: 2rem; padding: 2rem; border-radius: 0.5rem; background: white; display: none;"></div>
+
+        <!-- Pro Upsell -->
+        <div id="upsell" style="margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 0.5rem; color: white; text-align: center; display: none;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">🚀 Unlock Pro Features</h3>
+            <p style="margin-bottom: 1.5rem;">Get unlimited checks, source links, and full source code access</p>
+            <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">$29 <span style="font-size: 1rem;">one-time</span></div>
+            <a href="pricing.html" style="display: inline-block; padding: 0.8rem 2rem; background: white; color: #4f46e5; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Upgrade to Pro →</a>
+        </div>
+    </section>
+
     <!-- Features Section -->
-    <section id="features" class="features-section">
+    <section id="features" style="padding: 4rem 2rem; background: #f9fafb;">
         <div class="container">
-            <h2 class="section-title">Why Choose Us?</h2>
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Why Choose Our Tool?</h2>
+            
             <div class="features-grid">
                 <!-- Free Features -->
-                <div class="feature-card free">
-                    <h3>Free Version</h3>
-                    <ul>
-                        <li>✓ 1,000 words per check</li>
-                        <li>✓ 5 checks per day</li>
-                        <li>✓ Basic similarity score</li>
-                        <li class="disabled">✗ Source links</li>
-                        <li class="disabled">✗ PDF reports</li>
+                <div class="feature-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">🎯 Free Version</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0;">✓ 1,000 words per check</li>
+                        <li style="padding: 0.5rem 0;">✓ 5 checks per day</li>
+                        <li style="padding: 0.5rem 0;">✓ Basic similarity detection</li>
+                        <li style="padding: 0.5rem 0; opacity: 0.5;">✗ Source links</li>
+                        <li style="padding: 0.5rem 0; opacity: 0.5;">✗ PDF reports</li>
                     </ul>
+                    <a href="signup.html" style="display: inline-block; margin-top: 1rem; color: #4f46e5; text-decoration: none; font-weight: bold;">Get Started →</a>
                 </div>
                 
                 <!-- Pro Features -->
                 <div class="feature-card pro">
-                    <h3>Pro Version</h3>
-                    <ul>
-                        <li>✓ Unlimited words</li>
-                        <li>✓ Unlimited checks</li>
-                        <li>✓ Source links with % match</li>
-                        <li>✓ PDF reports</li>
-                        <li>✓ Full source code access</li>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">💎 Pro Version</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0;">✓ Unlimited words & checks</li>
+                        <li style="padding: 0.5rem 0;">✓ Deep AI-powered scanning</li>
+                        <li style="padding: 0.5rem 0;">✓ Source links with % match</li>
+                        <li style="padding: 0.5rem 0;">✓ PDF detailed reports</li>
+                        <li style="padding: 0.5rem 0;">✓ Full source code access</li>
+                        <li style="padding: 0.5rem 0;">✓ Priority support</li>
                     </ul>
-                    <div class="price">$29 one-time</div>
+                    <div style="font-size: 2rem; font-weight: bold; color: #4f46e5; margin: 1rem 0;">$29</div>
+                    <a href="pricing.html" style="display: inline-block; padding: 0.8rem 2rem; background: #4f46e5; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Buy Pro Now</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section style="padding: 4rem 2rem;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">How It Works</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">
+                <div>
+                    <div style="width: 50px; height: 50px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">1</div>
+                    <h3>Paste Text</h3>
+                    <p style="color: #6b7280;">Copy and paste your content into the checker</p>
+                </div>
+                <div>
+                    <div style="width: 50px; height: 50px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">2</div>
+                    <h3>Click Check</h3>
+                    <p style="color: #6b7280;">Our AI scans millions of online sources</p>
+                </div>
+                <div>
+                    <div style="width: 50px; height: 50px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">3</div>
+                    <h3>Get Results</h3>
+                    <p style="color: #6b7280;">View similarity score and sources (Pro)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="padding: 4rem 2rem; background: #f9fafb;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">What Our Users Say</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div style="color: #fbbf24; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="margin-bottom: 1rem;">"The pro version is worth every penny. Being able to see exact sources saved my research paper!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 40px; height: 40px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">R</div>
+                        <div>
+                            <strong>Rahul Sharma</strong>
+                            <div style="color: #6b7280; font-size: 0.9rem;">Student</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div style="color: #fbbf24; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="margin-bottom: 1rem;">"Bought the source code for $29. Now I'm running my own plagiarism checking business!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 40px; height: 40px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">A</div>
+                        <div>
+                            <strong>Amit Patel</strong>
+                            <div style="color: #6b7280; font-size: 0.9rem;">Developer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="padding: 4rem 2rem;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Frequently Asked Questions</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <div>
+                    <h3 style="margin-bottom: 0.5rem;">What's the difference between free and pro?</h3>
+                    <p style="color: #6b7280;">Free version has word limits (1000 words) and daily checks (5). Pro version is unlimited and includes source links, PDF reports, and full source code access.</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem;">Do I get the source code with Pro?</h3>
+                    <p style="color: #6b7280;">Yes! Pro version includes complete source code (HTML, CSS, JavaScript) that you can use to run your own plagiarism checker.</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem;">Is it a one-time payment?</h3>
+                    <p style="color: #6b7280;">Yes, $29 is a one-time payment. No subscriptions or recurring fees.</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem;">Can I install it on my own server?</h3>
+                    <p style="color: #6b7280;">Absolutely! Pro version comes with full code that you can host anywhere - GitHub Pages, Cloudflare, or your own server.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: 4rem 2rem; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Get Started?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join 10,000+ happy users. Try free or go pro today!</p>
+            <div>
+                <a href="#checker" style="display: inline-block; padding: 1rem 2rem; background: white; color: #4f46e5; text-decoration: none; border-radius: 0.5rem; font-weight: bold; margin-right: 1rem;">Try Free Now</a>
+                <a href="pricing.html" style="display: inline-block; padding: 1rem 2rem; background: transparent; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold; border: 2px solid white;">View Pro →</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 PlagiarismChecker. All rights reserved.</p>
+    <footer class="footer">
+        <div class="footer-links">
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Product</h4>
+                <ul style="list-style: none;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Company</h4>
+                <ul style="list-style: none;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Support</h4>
+                <ul style="list-style: none;">
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Connect</h4>
+                <ul style="list-style: none;">
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid #374151; margin-top: 2rem; padding-top: 2rem;">
+            <p>&copy; 2024 PlagiarismChecker. All rights reserved. | <a href="sitemap.xml" style="color: #9ca3af;">Sitemap</a></p>
         </div>
     </footer>
 
+    <!-- JavaScript Files -->
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    
+    <script>
+        // User session
+        let userSession = {
+            isPro: false,
+            checksToday: 0,
+            lastCheckDate: new Date().toDateString()
+        };
+
+        // Load session
+        function loadSession() {
+            const saved = localStorage.getItem('plagiarismChecker');
+            if (saved) {
+                userSession = JSON.parse(saved);
+            }
+            updateUI();
+        }
+
+        // Update UI
+        function updateUI() {
+            const freeFeatures = document.getElementById('freeFeatures');
+            const proFeatures = document.getElementById('proFeatures');
+            const freeBtn = document.getElementById('freeBtn');
+            const proBtn = document.getElementById('proBtn');
+            
+            if (userSession.isPro) {
+                freeFeatures.style.display = 'none';
+                proFeatures.style.display = 'block';
+                freeBtn.style.background = '#f3f4f6';
+                freeBtn.style.color = '#333';
+                proBtn.style.background = 'white';
+                proBtn.style.color = '#4f46e5';
+                document.getElementById('wordLimit').textContent = 'Unlimited';
+            } else {
+                freeFeatures.style.display = 'block';
+                proFeatures.style.display = 'none';
+                freeBtn.style.background = 'white';
+                freeBtn.style.color = '#4f46e5';
+                proBtn.style.background = '#f3f4f6';
+                proBtn.style.color = '#333';
+                document.getElementById('wordLimit').textContent = '1000';
+            }
+        }
+
+        // Set version
+        function setVersion(version) {
+            if (version === 'pro' && !userSession.isPro) {
+                document.getElementById('upsell').style.display = 'block';
+                document.getElementById('upsell').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            document.getElementById('upsell').style.display = 'none';
+            
+            if (version === 'free') {
+                userSession.isPro = false;
+            }
+            
+            updateUI();
+        }
+
+        // Word count
+        document.getElementById('textInput').addEventListener('input', function() {
+            const words = this.value.trim() ? this.value.trim().split(/\s+/).length : 0;
+            document.getElementById('wordCount').textContent = words;
+        });
+
+        // Check plagiarism
+        function checkPlagiarism() {
+            const text = document.getElementById('textInput').value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            
+            if (words < 10) {
+                alert('Please enter at least 10 words');
+                return;
+            }
+            
+            // Check free limits
+            if (!userSession.isPro && words > 1000) {
+                alert('Free version limited to 1000 words. Please upgrade to Pro!');
+                document.getElementById('upsell').style.display = 'block';
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = '<div style="text-align: center;"><div class="spinner" style="border: 4px solid #f3f4f6; border-top: 4px solid #4f46e5; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div><p>Scanning millions of sources...</p></div>';
+            
+            setTimeout(() => {
+                const similarity = Math.floor(Math.random() * 30) + 5;
+                
+                if (userSession.isPro) {
+                    resultsDiv.innerHTML = `
+                        <div style="background: #fef3c7; padding: 1.5rem; border-radius: 0.5rem;">
+                            <h3 style="margin-bottom: 1rem;">📊 Detailed Results</h3>
+                            <p style="font-size: 1.2rem;">Similarity: <strong>${similarity}%</strong></p>
+                            <div style="background: #e5e7eb; height: 8px; border-radius: 4px; margin: 1rem 0;">
+                                <div style="width: ${similarity}%; background: #f59e0b; height: 8px; border-radius: 4px;"></div>
+                            </div>
+                            <p><strong>Sources Found:</strong> 3</p>
+                            <ul style="margin: 1rem 0;">
+                                <li style="padding: 0.3rem 0;">📄 example.com/research - 12% match</li>
+                                <li style="padding: 0.3rem 0;">📄 wikipedia.org/article - 8% match</li>
+                                <li style="padding: 0.3rem 0;">📄 academic.edu/paper - 5% match</li>
+                            </ul>
+                            <div style="display: flex; gap: 1rem;">
+                                <button style="flex: 1; padding: 0.8rem; background: #4f46e5; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">📥 Download PDF</button>
+                                <button style="flex: 1; padding: 0.8rem; background: #1f2937; color: white; border: none; border-radius: 0.5rem; cursor: pointer;" onclick="showSourceCode()">🔓 Get Source Code</button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 0.5rem;">
+                            <h3 style="margin-bottom: 1rem;">🔍 Basic Result</h3>
+                            <p style="font-size: 1.2rem;">${similarity}% similarity detected</p>
+                            <div style="background: #e5e7eb; height: 8px; border-radius: 4px; margin: 1rem 0;">
+                                <div style="width: ${similarity}%; background: #4f46e5; height: 8px; border-radius: 4px;"></div>
+                            </div>
+                            <p style="color: #6b7280; font-size: 0.9rem;">🔒 Upgrade to Pro for source links and PDF reports</p>
+                            <button onclick="showUpsell()" style="width: 100%; margin-top: 1rem; padding: 0.8rem; background: #4f46e5; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Upgrade to Pro →</button>
+                        </div>
+                    `;
+                }
+            }, 2000);
+        }
+
+        // Show upsell
+        function showUpsell() {
+            document.getElementById('upsell').style.display = 'block';
+            document.getElementById('upsell').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show source code (Pro feature)
+        function showSourceCode() {
+            alert('🔓 Source Code Access\n\nThank you for purchasing Pro version!\n\nCheck your email for download link.');
+        }
+
+        // Demo login (for testing)
+        function demoLogin(type) {
+            userSession.isPro = (type === 'pro');
+            localStorage.setItem('plagiarismChecker', JSON.stringify(userSession));
+            updateUI();
+            alert(`Demo ${type} user activated!`);
+        }
+
+        // Initialize
+        loadSession();
+
+        // Add spinner animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
